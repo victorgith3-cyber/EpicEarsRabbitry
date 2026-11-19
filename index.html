@@ -15,6 +15,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png?v=2">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png?v=2">
     <link rel="manifest" href="favicon/site.webmanifest?v=2">
+    <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 </head>
 <body>
     <!-- Header & Navigation -->
@@ -30,6 +31,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li class="theme-li"><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false" title="Toggle dark / light mode"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><mask id="theme-moon-mask"><rect x="0" y="0" width="24" height="24" fill="white"/><circle class="tt-cut" cx="24" cy="0" r="6" fill="black"/></mask><circle class="tt-core" cx="12" cy="12" r="5" fill="currentColor" mask="url(#theme-moon-mask)"/><g class="tt-rays" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="3.5" x2="12" y2="1.5"/><line x1="12" y1="20.5" x2="12" y2="22.5"/><line x1="3.5" y1="12" x2="1.5" y2="12"/><line x1="20.5" y1="12" x2="22.5" y2="12"/><line x1="17.66" y1="6.34" x2="19.42" y2="4.58"/><line x1="6.34" y1="6.34" x2="4.58" y2="4.58"/><line x1="17.66" y1="17.66" x2="19.42" y2="19.42"/><line x1="6.34" y1="17.66" x2="4.58" y2="19.42"/></g></svg></button></li>
                 </ul>
             </nav>
         </div>
@@ -148,6 +150,12 @@
                     <h3>Epic Ears Rabbitry Website</h3>
                     <p>A responsive business website for a rabbit farm in Kiambu, Kenya, with products, training services, a gallery and ordering through WhatsApp.</p>
                     <a href="https://epic-ears-rabbitry-three.vercel.app/" target="_blank" rel="noopener" class="btn btn-outline">view project</a>
+                </div>
+                <div class="project-card">
+                    <img src="kj-visual-studios.jpg" alt="KJ Visual Studios website homepage" loading="lazy" style="width:100%;border-radius:8px;">
+                    <h3>KJ Visual Studios Website</h3>
+                    <p>A website for a photography studio in Kikuyu Town offering portraits, weddings and events, with a gallery, services, dark and light mode and WhatsApp booking.</p>
+                    <a href="https://kj-visual-studios.vercel.app/" target="_blank" rel="noopener" class="btn btn-outline">view project</a>
                 </div>
         </div>
         </div>
@@ -562,8 +570,36 @@
   });
 })();
 </script>
+    <script>
+    (function () {
+      var root = document.documentElement, btn = document.getElementById('theme-toggle');
+      if (!btn) return;
+      function apply(t) {
+        root.setAttribute('data-theme', t);
+        btn.setAttribute('aria-pressed', t === 'dark');
+        btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+      apply(root.getAttribute('data-theme') || 'light');
+      btn.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.classList.add('theme-transition');
+        apply(next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        setTimeout(function () { root.classList.remove('theme-transition'); }, 600);
+      });
+      try {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('theme')) apply(e.matches ? 'dark' : 'light');
+        });
+      } catch (e) {}
+    })();
+    </script>
 </body>
 </html>
+
+
+
+
 
 
 
