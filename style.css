@@ -835,3 +835,16 @@ html.theme-transition, html.theme-transition *, html.theme-transition *::before,
 [data-theme="dark"] .nav-links { background: var(--dm-surface); }
 [data-theme="dark"] .pricing-card { background: var(--dm-surface); }
 
+/* ===== Hero dark fix ===== */
+[data-theme="dark"] .hero {
+  background: linear-gradient(135deg, #0b1220 0%, #111c30 55%, #1a1433 100%) !important;
+}
+[data-theme="dark"] .hero::before,
+[data-theme="dark"] .hero::after {
+  background: rgba(124, 58, 237, 0.18) !important;
+}
+[data-theme="dark"] .hero h1 { color: #f1f5f9 !important; }
+[data-theme="dark"] .hero h1 span { color: #60a5fa !important; }
+[data-theme="dark"] .hero p { color: #cbd5e1 !important; }
+[data-theme="dark"] .hero .btn-outline { color: #93c5fd; border-color: #3b82f6; }
+[data-theme="dark"] .hero .btn-outline:hover { color: #fff; }
